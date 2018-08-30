@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Prospere Laundry & Wet Cleaning",
+    "address"	:	"Jalan Kemang Raya No.3-5GF/16, 12730",
+    "city": "Kebayoran",
+    "district": "Jakarta Selatan",
+    "pricePerKg": 5000,
+    "photo": null
+  }, 
+  {
+    "name": "Quick and Clean",
+    "address"	:	"Apartemen Laguna Pluit, DKI Jakarta",
+    "city": "Jakarta",
+    "district": "Jakarta Pusat",
+    "pricePerKg": 8000,
+    "photo": null
+  },
+  {
+    "name": "Colorwash",
+    "address"	:	"Plaza Indonesia Kav.28-30, Jalan MH. Thamrin, 10350",
+    "city": "Jakarta Pusat",
+    "district": "Jakarta Pusat",
+    "pricePerKg": 8000,
+    "photo": null
+  },
+  {
+    "name": "Laundrett",
+    "address"	:	"Mall Taman Anggrek Kav. 21, Jalan Letjen. S. Parman, 11470",
+    "city": "Kemayoran",
+    "district": "Jakarta Selatan",
+    "pricePerKg": 10000,
+    "photo": null
+  },
+  {
+    "name": "Filoly",
+    "address"	:	"Jalan Pegambiran, Rawamangun, East Jakarta, DKI Jakarta",
+    "city": "Rawamangun",
+    "district": "Jakarta Timur",
+    "pricePerKg": 5000,
+    "photo": null
+  },
+  { 
+    "name": "Kilofresh Laundry",
+    "address"	:	"Jl. Pejaten Raya",
+    "city": "Pejaten",
+    "district": "Jakarta Selatan",
+    "pricePerKg": 5000,
+    "photo": null
+  },
+  { 
+    "name": "Rumah Cuci Kiloan",
+    "address"	:	"Komplek BPK V C-14 Gandul",
+    "city": "Pasar Senen",
+    "district": "Jakarta Selatan",
+    "pricePerKg": 4000,
+    "photo": null
+  }
+]
