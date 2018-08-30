@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgres",
+    "username": "windra",
+    "password": 123456,
     "database": "esee_laundry",
     "host": "127.0.0.1",
     "dialect": "postgres"
