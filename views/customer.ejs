@@ -16,7 +16,7 @@
                 <td><%= laundry.pricePerKg %></td>
                 <td><%= laundry.photo %></td>
                 <td><%= laundry.city %></td>
-                <td><a href="#">order</a></td>
+                <td><a href="/customer/order/<%=laundry.id%>/<%=user.id%>">order</a></td>
             </tr>
         <%})%>
     </table>

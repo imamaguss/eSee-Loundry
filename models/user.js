@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   User.associate = function(models) {
     // associations can be defined here
+    User.belongsToMany(models.Laundry,{through:models.Order})
     User.hasMany(models.Topup)
   };
   return User;

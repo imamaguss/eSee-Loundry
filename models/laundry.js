@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Laundry.associate = function(models) {
     // associations can be defined here
+    Laundry.belongsToMany(models.User,{through:models.Order})
   };
   return Laundry;
 };
