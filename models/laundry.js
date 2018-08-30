@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     pricePerKg: DataTypes.INTEGER,
     photo: DataTypes.STRING,
     city: DataTypes.STRING,
-    district: DataTypes.STRING
+    district: DataTypes.STRING,
+    username: DataTypes.STRING,
+    password: DataTypes.STRING
   }, {});
   Laundry.associate = function(models) {
     // associations can be defined here

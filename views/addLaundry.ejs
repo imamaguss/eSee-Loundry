@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add Laundry</h1>
+    <form action="/admin/addLaudries" method="POST">
+        <input type="text" name="name" id="" placeholder="name">
+        <br>
+        <input type="text" name="address" id="" placeholder="address">
+        <br>
+        <input type="text" name="pricePerKg" id="" placeholder="price">
+        <br>
+        <input type="text" name="photo" id="" placeholder="photo">
+        <br>
+        <input type="text" name="address" id="" placeholder="address">
+        <br>
+        <input type="text" name="username" id="" placeholder="username">
+        <br>
+        <input type="text" name="password" id="" placeholder="password">
+        <br>
+        <button type="submit"> Submit </button>
+    </form>
+    <table>
+        <%laundries.forEach(function(laundry){%>
+            <tr>
+                <td><%= laundry.name %></td>
+                <td><%= laundry.address %></td>
+                <td><%= laundry.pricePerKg %></td>
+                <td><%= laundry.photo %></td>
+                <td><%= laundry.city %></td>
+                <td><a href="#">Edit</a> <a href="#">Delete</a></td> 
+            </tr>
+        <%})%>
+    </table>
+</body>
+</html>
