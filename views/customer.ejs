@@ -1,24 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<h1>Laundry</h1>
-<body>
-    <table>
-        <%laundries.forEach(function(laundry){%>
-            <tr>
-                <td><%= laundry.name %></td>
-                <td><%= laundry.address %></td>
-                <td><%= laundry.pricePerKg %></td>
-                <td><%= laundry.photo %></td>
-                <td><%= laundry.city %></td>
-                <td><a href="/customer/order/<%=laundry.id%>/<%=user.id%>">order</a></td>
-            </tr>
-        <%})%>
-    </table>
-</body>
-</html>
+<script>
+    function confirmOrder() {
+        return confirm('Are you sure to order these Laundry?')
+    }
+</script>
+<%- include header %>
+    <div style="display: flex">
+        <form action="/customer/dashboard" method="GET" class="form-inline">
+            <div class="form-group">
+                <input class="form-control" type="text" name="search" placeholder="find Laundromat">
+                <input class="btn btn-default" type="submit" value="search">
+            </div>
+        </form>
+        &emsp;
+        <div>
+            <a href="/customer/dashboard/?sort=asc"><button class="btn btn-default">sort by price/kg from low to high</button></a>
+        </div>
+        &ensp;
+        <div>
+            <a href="/customer/dashboard/?sort=desc"><button class="btn btn-default">sort by price/kg from high to low</button></a>
+        </div>
+        &ensp;&ensp;&ensp;
+        <a href="/customer/dashboard/orders"><button class="btn btn-info">Order History</button></a>
+     </div>
+     <br>
+     
+    <div class="row text-center"></div>
+    <%laundries.forEach(function(laundry){%>
+        
+            <div class="col-sm-2 col-md-4">
+                <div class="thumbnail">
+                    <img class="img-thumbnail height-img" src="<%= laundry.photo %>" alt="...">
+                    <div class="caption">
+                        <h3><%= laundry.name %></h3>
+                        <p><%= laundry.address %></p>
+                        <p>Rp.<%= laundry.pricePerKg %>/kg</p>
+                        <p><a href="/customer/order/<%=laundry.id%>/<%=user.id%>" class="btn btn-primary" role="button" onclick="return confirmOrder()">Order</a></p>
+                    </div>
+                </div>
+            </div>
+        
+    <%})%>
+</div>
+
+<%- include footer %>

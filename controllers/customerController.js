@@ -2,6 +2,14 @@ const {Laundry} = require('../models')
 const {User} = require('../models')
 const {Order} = require('../models')
 const crypto = require('crypto')
+const Nexmo = require('nexmo');
+const nexmo = new Nexmo({
+apiKey: 'c475dd45',
+apiSecret: 'yu7Jgp1om7IDmdWi'
+});
+const Sequelize = require('../models').Sequelize;
+const Op = Sequelize.Op
+const convertDate = require('../helpers/convertDate')
 
 class CustomerController {
 
@@ -31,7 +39,7 @@ class CustomerController {
     }
 
     static createOrder(req,res) {
-        // console.log(req.params)
+        
         Order.create({
             LaundryId : req.params.laundryId,
             UserId : req.params.userId,
@@ -39,12 +47,68 @@ class CustomerController {
             orderDate : new Date
         })
         .then(function(){
-            res.redirect('/customer')
+            User.findOne({where: {id: req.params.userId}})
+                .then(user => {
+                    const from = 'Nexmo';
+                    const to = user.phone;
+                    const text = 'Hii, ' + user.name + ' kami telah menerima orderan Anda. Mohon menunggu kedatangan rekan kami untuk penjemputan cucian Anda. Terimakasih...';
+
+                    nexmo.message.sendSms(from, to, text, (error, response) => {
+                    if(error) {
+                        throw error;
+                    } else if(response.messages[0].status != '0') {
+                        console.error(response);
+                        throw 'Nexmo returned back a non-zero status';
+                    } else {
+                        console.log(response);
+                    }
+                    });
+                })
+            res.redirect('/customer/dashboard')
         })
         .catch(function(err){
             res.send(err)
         })
 
+    }
+
+    static dashboard (req, res) {
+        let orderBy = null
+        let where = {}
+        if (req.query.search) {
+            where = {
+                name: {
+                    [Op.iLike]: '%'+req.query.search+'%'
+                }
+            }
+        }
+        if (req.query.sort==='asc'){
+            orderBy = [['pricePerKg','asc']]
+        } else {
+            orderBy = [['pricePerKg','desc']]
+        }
+        Laundry.findAll({
+            order: orderBy,
+            where: where
+        }).then(laundries => {
+            console.log(req.session.user.name)
+            res.render('customer', {user: req.session.user, laundries:laundries, currentUser:req.session.user.name})
+        })
+    }
+
+    static orderHistory (req,res) {
+        Order.findAll({
+            include : [Laundry],
+            where: {
+                UserId : req.session.user.id
+            }
+        })
+        .then(function(orders){
+            res.render('orderCust',{orders:orders,convertDate:convertDate})
+        })
+        .catch(function(err){
+            res.send(err)
+        })
     }
 
 }

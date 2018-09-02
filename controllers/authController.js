@@ -8,7 +8,6 @@ class AuthController {
     }
 
     static login (req,res) {
-        console.log(req.body.username)
         User.findOne({
             where: {
                 username: req.body.username
@@ -31,18 +30,29 @@ class AuthController {
                         Laundry.findAll()
                         .then(function(laundries){
                             if (user) {
-                                req.session.current_user = req.body.username
-                                res.render('customer',{user:user,laundries:laundries})
+                                req.session.user = user
+                                if(user.role==='customer'){
+                                    res.redirect('/customer/dashboard')
+                                } else if (user.role==='admin'){
+                                    res.redirect('/admin/dashboard')
+                                } else {
+                                    res.render('laundry',{user:user,laundries:laundries})
+                                }
                             } else {
                                 res.redirect('customer/register')
                             }
                         })
                     })
                     .catch(err => {
-                        res.send('Uh-oh!Something is wrong')
+                        res.send('Something is wrong')
                     })
             }
         })
+    }
+
+    static logout (req,res){
+        req.session.user = null
+        res.redirect('/login')
     }
 }
 

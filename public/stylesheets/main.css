@@ -1,0 +1,25 @@
+.thumbnail img{
+    width: 100%;
+}
+
+.thumbnail{
+    padding: 0;
+}
+
+.thumbnail .caption-full{
+    padding: 9px;
+}
+
+#wrap{
+    width: 50%;
+    height: 500px;
+}
+
+.list-group-item a{
+    color: black;
+}
+
+.height-img {
+    min-height: 300px;
+    max-height: 300px;
+}

@@ -1,0 +1,25 @@
+<%- include header %>
+
+    <table class="table table-striped">
+        
+        <tr>
+            <th>Laundromat</th>
+            <th>Order Date</th>
+            <th>Due Date</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Total Price</th>
+        </tr>
+        <%orders.forEach(function(order){%>
+        <tr>
+            <td><%= order.Laundry.name %></td>
+            <td><%= order.orderDate %></td>
+            <td><%= order.dueDate %></td>
+            <td><%= order.quantity %></td>
+            <td><%= order.status %></td>
+            <td><%= order.totalPrice %></td>
+        </tr>
+        <%})%>
+    </table>
+
+<%- include footer %>

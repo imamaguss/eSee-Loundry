@@ -3,7 +3,9 @@ module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
     name: DataTypes.STRING,
     username: DataTypes.STRING,
-    password: DataTypes.STRING,
+    password: {
+      type: DataTypes.STRING,
+    },
     gender: DataTypes.STRING,
     address: DataTypes.STRING,
     phone: DataTypes.STRING,
